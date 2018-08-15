@@ -1,0 +1,260 @@
+{% extends "layout9.html" %}
+
+{% block title %}
+Cheap Eats, Cheap Drinks
+{% endblock %}
+
+{% block main %}
+        {% if steals %}
+            <script>
+                var markers = {{steals|tojson}}
+            </script>
+        {% endif %}
+
+
+    <div id="searchoption" style="display:none;">
+    <form action="{{ url_for('mobilesearch') }}" id="form" method="post, get">
+        <fieldset>
+            <input autocomplete="off" class="form-control" name="zipnasty" placeholder="Zip Code or Neighborhood" type="text" style="align-self: center; margin-bottom:3px; text-align:center; width:100%"/><br>
+
+            <input autocomplete="off" class="form-control" name="keyword" placeholder="Keyword (Beer, Wings, Pizza...)" type="text" style="align-self:center; margin-bottom:3px; width:100%;text-align:center;"/><br>
+
+
+
+            <span class="input-group-addon" style="margin-left: 12px; float:left; display:inline; width:auto; line-height:20px; margin-right:3px; margin-bottom:3px">Starts:</span>
+                    <select name="start_time" class="selectpicker form-control" style="float:left; width: auto; margin-right: 7px; margin-bottom:3px">
+                        <option value = "live_start"> </option>
+                        <option value = "22">11:00AM</option>
+                        <option value = "23">11:30AM</option>
+                        <option value = "24">12:00PM</option>
+                        <option value = "25">12:30PM</option>
+                        <option value = "26">1:00PM</option>
+                        <option value = "27">1:30PM</option>
+                        <option value = "28">2:00PM</option>
+                        <option value = "29">2:30PM</option>
+                        <option value = "30">3:00PM</option>
+                        <option value = "31">3:30PM</option>
+                        <option value = "32">4:00PM</option>
+                        <option value = "33">4:30PM</option>
+                        <option value = "34">5:00PM</option>
+                        <option value = "35">5:30PM</option>
+                        <option value = "36">6:00PM</option>
+                        <option value = "37">6:30PM</option>
+                        <option value = "38">7:00PM</option>
+                        <option value = "39">7:30PM</option>
+                        <option value = "40">8:00PM</option>
+                        <option value = "41">8:30PM</option>
+                        <option value = "42">9:00PM</option>
+                        <option value = "43">9:30PM</option>
+                        <option value = "44">10:00PM</option>
+                        <option value = "45">10:30PM</option>
+                        <option value = "46">11:00PM</option>
+                        <option value = "47">11:30PM</option>
+                        <option value = "48">11:59PM</option>
+                    </select>
+                    <div></div>
+
+
+                   <span class="input-group-addon"  style="float:left; width:auto; line-height:20px; margin-right:3px; margin-bottom:3px">Ends: </span>
+                    <select name="end_time" class="selectpicker form-control"  style="float:left; width: auto; margin-bottom:3px">
+                        <option value = "live_end"> </option>
+                        <option value = "22">11:00AM</option>
+                        <option value = "23">11:30AM</option>
+                        <option value = "24">12:00PM</option>
+                        <option value = "25">12:30PM</option>
+                        <option value = "26">1:00PM</option>
+                        <option value = "27">1:30PM</option>
+                        <option value = "28">2:00PM</option>
+                        <option value = "29">2:30PM</option>
+                        <option value = "30">3:00PM</option>
+                        <option value = "31">3:30PM</option>
+                        <option value = "32">4:00PM</option>
+                        <option value = "33">4:30PM</option>
+                        <option value = "34">5:00PM</option>
+                        <option value = "35">5:30PM</option>
+                        <option value = "36">6:00PM</option>
+                        <option value = "37">6:30PM</option>
+                        <option value = "38">7:00PM</option>
+                        <option value = "39">7:30PM</option>
+                        <option value = "40">8:00PM</option>
+                        <option value = "41">8:30PM</option>
+                        <option value = "42">9:00PM</option>
+                        <option value = "43">9:30PM</option>
+                        <option value = "44">10:00PM</option>
+                        <option value = "45">10:30PM</option>
+                        <option value = "46">11:00PM</option>
+                        <option value = "47">11:30PM</option>
+                        <option value = "48">11:59PM</option>
+                    </select>
+                    <span style="text-align:center;">
+                    <select name="day" class="selectpicker form-control"  style="text-align: center; text-align-last: center; float:left; width:100%; line-height:20px; margin-right:3px; margin-bottom:3px">
+                        <option value = "today" selected="true">Today</option>
+                        <option style="text-align:center;" value = "6">Sunday</option>
+                        <option style="text-align:center;" value = "0">Monday</option>
+                        <option style="text-align:center;" value = "1">Tuesday</option>
+                        <option style="text-align:center;" value = "2">Wednesday</option>
+                        <option style="text-align:center;" value = "3">Thursday</option>
+                        <option style="text-align:center;" value = "4">Friday</option>
+                        <option style="text-align:center;" value = "5">Saturday</option>
+                    </select>
+                    </span>
+                <button class="btn btn-default" id="submit" type="submit"  style="float:left; display:inline; margin-bottom:15px; background-color:midnightblue;color:white; width:100%"><b>Search</b></button>
+
+        </fieldset>
+    </form>
+    </div>
+
+
+
+
+
+
+    <div class="w3-container" style="font-size:17px;">
+        <div class="w3-large">
+            <div style="font-size:16px; float:left;"> <b>Live Deals</b></div>
+            <i id="search" class="fa fa-search w3-text-green"  style="float:right; vertical-align: bottom;" onclick:"searchoption()"></i>
+
+        </div>
+    </div>
+
+    <div class="table-responsive">
+    <table class= "table table-striped" style="width:100%">
+            <tr hidden>
+                <th colspan="3" style="width:30%;">Bar</th hidden>
+                <th>Start Time</th hidden>
+                <th>End Time</th hidden>
+                <th colspan="2">Deal</th>
+            </tr>
+            <tr class="rowmachine">
+
+            </tr>
+
+            {% if steals %}
+                {% for bar in steals %}
+                    <tr id="{{ bar.bar_id }}">
+                        <td class="count">.</td>
+                        <td>
+                            <table>
+                                <tr><td style="font-size:14px; white-space:normal;"><b><a href="{{ url_for('mobilebar', thisbar=bar['bar_name'] ) }}">{{ bar['bar_name'] }}</a></b></td></tr>
+
+                                <tr style="font-size:12px;"><td>{{ bar['address'] }}</td></tr>
+                                <tr style="font-size:12px;"><td>{{ bar['city'] }}, {{ bar['state'] }} {{ bar['zip'] }}</td></tr>
+
+                                <tr><td style="font-size:12px"><b> {{ bar['time_start'] }} to
+                                {{ bar['time_end'] }}</b></td></tr>
+                                <tr><td  style="font-size:12px" class="mininterval" hidden>{{ bar['mininterval'] }}</td></tr>
+
+
+
+
+                            </table>
+                        </td>
+                        <td>
+                            <div>
+                            <table align="left" style="margin-top:0px">
+                                <tr style="font-size:12px; white-space:normal; width:50%; margin-right: 0px;"><td>{{ bar['deal'] }}</td></tr>
+                            </table>
+                            </div>
+                        </td>
+                        <td>
+                            <div></div>
+                            <div>
+                            <table>
+                                <tr align="right"> <td><span class="venueScore rating">{{ bar['rating'] }}</span></td></tr>
+                            </table>
+                        </div>
+                        </td>
+                    </tr>
+
+
+
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td style="width:100%; text-align: center;" colspan="6" align="center" style="text-align: center;font-size:14px;white-space:normal;"><b>No deals are live right now :/.<br> Try the search bar above to find upcoming deals!</b></td>
+            </tr>
+            {% endif %}
+
+            <tr class="__web-inspector-hide-shortcut__">
+                <td colspan="3"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="font-size:16px;"><b>Upcoming Deals</b></div>
+    <div class="table-responsive">
+    <table class= "table table-striped" style="width:100%">
+            <tr hidden>
+                <th colspan="3" style="width:30%;">Bar</th hidden>
+                <th>Start Time</th hidden>
+                <th>End Time</th hidden>
+                <th colspan="2">Deal</th>
+            </tr>
+            <tr class="rowmachine">
+
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+            </tfoot>
+            {% if upcomingdeals %}
+                {% for bar in upcomingdeals %}
+                    <tr>
+                        <td class="count">.</td>
+                        <td>
+                            <table>
+                                <tr><td style="font-size:14px; white-space:normal;"><b><a href="{{ url_for('mobilebar', thisbar=bar['bar_name'] ) }}">{{ bar['bar_name'] }}</a></b></td></tr>
+
+                                <tr style="font-size:12px;"><td>{{ bar['address'] }}</td></tr>
+                                <tr style="font-size:12px;"><td>{{ bar['city'] }}, {{ bar['state'] }} {{ bar['zip'] }}</td></tr>
+
+                                <tr><td style="font-size:12px"><b> {{ bar['time_start'] }} to
+                                {{ bar['time_end'] }}</b></td></tr>
+
+
+
+                            </table>
+                        </td>
+                        <td>
+                            <div>
+                            <table align="left" style="margin-top:0px">
+                                <tr style="font-size:12px; white-space:normal; width:50%; margin-right: 0px;"><td>{{ bar['deal'] }}</td></tr>
+                            </table>
+                            </div>
+                        </td>
+                        <td>
+                            <div></div>
+                            <div>
+                            <table>
+                                <tr align="right"> <td><span class="venueScore rating">{{ bar['rating'] }}</span></td></tr>
+                            </table>
+                        </div>
+                        </td>
+                    </tr>
+
+
+
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td style="width:100%; text-align: center;" colspan="6" align="center" style="text-align: center;font-size:14px;white-space:normal;"><b>There are no upcoming deals right now :/. <br>Try the search bar above to find upcoming deals!</b></td>
+            </tr>
+            {% endif %}
+
+            <tr class="__web-inspector-hide-shortcut__">
+                <td colspan="3"></td>
+            </tr>
+        </table>
+
+    </div>
+
+<div id="seconds" hidden> {{ seconds }} </div>
+
+
+
+{% endblock %}

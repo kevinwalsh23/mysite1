@@ -1,0 +1,47 @@
+{% extends "layout9.html" %}
+
+{% block title %}
+Cheap Eats, Cheap Drinks
+{% endblock %}
+
+{% block main %}
+
+            <main>
+                <h4 style="text-align: center; margin-left: 50%; margin-right: auto; width:100%" >Register for Dealbly</h4>
+            <form style="margin-left: 50%; margin-right: auto; width:50%" action="{{ url_for('mobileregister') }}" data-toggle="validator" method="post">
+                <fieldset>
+                    <div class="form-group">
+                        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="password" placeholder="Password" type="password" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="confirm password" placeholder="Confirm Password" type="password" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="zipcode" placeholder="NYC Zipcode" type="text" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="email" placeholder="Email Address" type="text" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Register</button>
+                    </div>
+                </fieldset>
+            </form>
+            </main>
+
+        </div>
+
+    </body>
+
+{% endblock %}
+
+
+

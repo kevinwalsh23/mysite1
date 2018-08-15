@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Cheap Eats, Cheap Drinks
+{% endblock %}
+
+{% block main %}
+            <script>
+                var markers = {{steals|tojson}}
+            </script>
+    <form action="{{ url_for('indexsearch') }}" id="form" method="post, get" class="in-line">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="zipnasty" placeholder="Zip Code or Neighborhood" type="text" style="float:left; display:inline; margin-right:7px; margin-bottom:15px"/>
+                <input autocomplete="off" autofocus class="form-control" name="keyword" placeholder="I'm looking for..." type="text" style="float:left; display:inline; margin-right:7px; margin-bottom:15px"/>
+
+
+
+                <span class="input-group-addon" style="float:left; display:inline; width:auto; line-height:20px; margin-right:3px; margin-bottom:15px">Starts:</span>
+                    <select name="start_time" class="selectpicker form-control" style="float:left; display:inline; width:auto; margin-right:7px; margin-bottom:15px">
+                        <option value = "live_start"> </option>
+                        <option value = "22">11:00AM</option>
+                        <option value = "23">11:30AM</option>
+                        <option value = "24">12:00PM</option>
+                        <option value = "25">12:30PM</option>
+                        <option value = "26">1:00PM</option>
+                        <option value = "27">1:30PM</option>
+                        <option value = "28">2:00PM</option>
+                        <option value = "29">2:30PM</option>
+                        <option value = "30">3:00PM</option>
+                        <option value = "31">3:30PM</option>
+                        <option value = "32">4:00PM</option>
+                        <option value = "33">4:30PM</option>
+                        <option value = "34">5:00PM</option>
+                        <option value = "35">5:30PM</option>
+                        <option value = "36">6:00PM</option>
+                        <option value = "37">6:30PM</option>
+                        <option value = "38">7:00PM</option>
+                        <option value = "39">7:30PM</option>
+                        <option value = "40">8:00PM</option>
+                        <option value = "41">8:30PM</option>
+                        <option value = "42">9:00PM</option>
+                        <option value = "43">9:30PM</option>
+                        <option value = "44">10:00PM</option>
+                        <option value = "45">10:30PM</option>
+                        <option value = "46">11:00PM</option>
+                        <option value = "47">11:30PM</option>
+                        <option value = "48">11:59PM</option>
+                    </select>
+
+
+                   <span class="input-group-addon"  style="float:left; display:inline; width:auto; line-height:20px; margin-right:3px; margin-bottom:15px">Ends: </span>
+                    <select name="end_time" class="selectpicker form-control"  style="float:left; display:inline; margin-right:7px; margin-bottom:15px">
+                        <option value = "live_end"> </option>
+                        <option value = "22">11:00AM</option>
+                        <option value = "23">11:30AM</option>
+                        <option value = "24">12:00PM</option>
+                        <option value = "25">12:30PM</option>
+                        <option value = "26">1:00PM</option>
+                        <option value = "27">1:30PM</option>
+                        <option value = "28">2:00PM</option>
+                        <option value = "29">2:30PM</option>
+                        <option value = "30">3:00PM</option>
+                        <option value = "31">3:30PM</option>
+                        <option value = "32">4:00PM</option>
+                        <option value = "33">4:30PM</option>
+                        <option value = "34">5:00PM</option>
+                        <option value = "35">5:30PM</option>
+                        <option value = "36">6:00PM</option>
+                        <option value = "37">6:30PM</option>
+                        <option value = "38">7:00PM</option>
+                        <option value = "39">7:30PM</option>
+                        <option value = "40">8:00PM</option>
+                        <option value = "41">8:30PM</option>
+                        <option value = "42">9:00PM</option>
+                        <option value = "43">9:30PM</option>
+                        <option value = "44">10:00PM</option>
+                        <option value = "45">10:30PM</option>
+                        <option value = "46">11:00PM</option>
+                        <option value = "47">11:30PM</option>
+                        <option value = "48">11:59PM</option>
+                    </select>
+
+
+
+
+                <button class="btn btn-default" id="submit" type="submit"  style="float:left; display:inline; margin-bottom:15px">Search</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <div style="float:left; display:inline;font-size:17px;"><b>Live Deals</b></div>
+
+    <table class= "table table-striped">
+        <tr>
+            <th> </th>
+            <th style="width:33%;">Bar</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Deal</th>
+        </tr>
+        <tr class="rowmachine">
+
+        </tr>
+        <tfoot>
+            <tr>
+                <td colspan="5"></td>
+                <td> </td>
+            </tr>
+        </tfoot>
+
+        {% for bar in steals %}
+            <tr>
+                <td class="count">.</td>
+                <td>
+                    <table>
+                        <tr><td style="font-size:17px;"><b>{{ bar['bar_name'] }}</b></td></tr>
+                        <tr><td>{{ bar['address'] }}</td></tr>
+                        <tr><td>{{ bar['city'] }}, {{ bar['state'] }} {{ bar['zip'] }}</td></tr>
+                        <tr><td>{{ bar['phone'] }}</td></tr>
+                    </table>
+                <td style="width:13%">{{ bar['time_start'] }}</td>
+                <td style="width:13%">{{ bar['time_end'] }}</td>
+                <td>{{ bar['deal'] }}</td>
+            </tr>
+        {% endfor %}
+
+
+
+
+
+        <tr class="__web-inspector-hide-shortcut__">
+            <td colspan="5"></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div style="float:left; display:inline;font-size:17px;"><b>Upcoming Deals</b></div>
+    <table class= "table table-striped">
+        <tr>
+            <th> </th>
+            <th style="width:33%;">Bar</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Deal</th>
+        </tr>
+        <tr class="rowmachine">
+
+        </tr>
+        <tfoot>
+            <tr>
+                <td colspan="5"></td>
+                <td> </td>
+            </tr>
+        </tfoot>
+
+        {% for bar in upcomingdeals %}
+            <tr>
+                <td class="count">.</td>
+                <td>
+                    <table>
+                        <tr><td style="font-size:17px;"><b>{{ bar['bar_name'] }}</b></td></tr>
+                        <tr><td>{{ bar['address'] }}</td></tr>
+                        <tr><td>{{ bar['city'] }}, {{ bar['state'] }} {{ bar['zip'] }}</td></tr>
+                        <tr><td>{{ bar['phone'] }}</td></tr>
+                    </table>
+                <td style="width:11%">{{ bar['time_start'] }}</td>
+                <td style="width:10%">{{ bar['time_end'] }}</td>
+                <td>{{ bar['deal'] }}</td>
+            </tr>
+        {% endfor %}
+
+
+        <tr class="__web-inspector-hide-shortcut__">
+            <td colspan="5"></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+
+{% endblock %}

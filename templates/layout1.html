@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+        <meta name="google-site-verification" content="YujXW5uYbdGWDq6SpMkJ_4IvVbxui_1Xiac4U8Ebc-Y" />
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+        <!-- https://developers.google.com/maps/documentation/javascript/ -->
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ key | urlencode }}&v=3.exp"></script>
+
+        <!-- https://github.com/corejavascript/typeahead.js/blob/master/doc/jquery_typeahead.md -->
+        <script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+
+        <!-- http://stewartjpark.com/Flask-JSGlue/ -->
+        {{ JSGlue.include() }}
+
+        <!-- http://handlebarsjs.com/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- app's own JavaScript -->
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+        <!-- http://1000hz.github.io/bootstrap-validator/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
+
+        <title> {% block title %}Dealbly{% endblock %}</title>
+
+    </head>
+
+    <body>
+            <nav class="navbar navbar-default" style="width:100%; height:8%; position:fixed; background: #2e944b;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="topbar">
+                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button" >
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url_for('index') }}"><span class="white">dealbly</span></a>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        {% if session.user_id %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ url_for('about') }}" style="color:white; font-size:15px; margin-top:5px">About</a></li>
+                                <li><a href="{{ url_for('logout') }}" style="color:white; font-size:15px; margin-top:5px">Log Out</a></li>
+                            </ul>
+                        {% else %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{{ url_for('about') }}" style="color:white; font-size:15px; margin-top:5px">About</a></li>
+                                <li><a href="{{ url_for('login') }}" style="color:white; font-size:15px; margin-top:5px">Log In</a></li>
+                                <li><a href="{{ url_for('register') }}"  style="color:white;font-size:15px; margin-top:5px">Register</a></li>
+
+
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container" >
+                {% if get_flashed_messages() %}
+                    <header>
+                        <div class="alert alert-info" role="alert">
+                            {{ get_flashed_messages() | join(" ") }}
+                        </div>
+                    </header>
+                {% endif %}
+
+                <main>
+                    {% block main %}{% endblock %}
+                </main>
+
+            </div>
+
+            <div class="googlemaps">
+
+                <!-- https://developers.google.com/maps/documentation/javascript/tutorial -->
+
+                <div id="map-canvas"></div>
+
+            </div>
+        <div class="clearfix"></div>
+
+    </body>
+
+</html>

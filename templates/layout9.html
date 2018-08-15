@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116537882-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-116537882-1');
+        gtag('set', {'user_id': 'USER_ID'}); // Set the user ID using signed-in user_id.
+        ga('set', 'userId', 'USER_ID'); // Set the user ID using signed-in user_id.
+        </script>
+
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ key | urlencode }}&v=3.exp"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+        <script src="jquery.ui.touch-punch.min.js"></script>
+        <!-- http://stewartjpark.com/Flask-JSGlue/ -->
+        {{ JSGlue.include() }}
+
+        <!-- app's own JavaScript -->
+        <script src="{{ url_for('static', filename='mobilescripts12.js') }}"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="canonical" href="https://www.dealbly.com{{ canon }}"/>
+
+
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="{{ url_for('static', filename='mobilestyles1.css') }}" rel="stylesheet"/>
+
+        <!-- https://developers.google.com/maps/documentation/javascript/ -->
+
+
+        <!-- https://github.com/corejavascript/typeahead.js/blob/master/doc/jquery_typeahead.md -->
+        <script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <!-- http://handlebarsjs.com/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+        <!-- http://1000hz.github.io/bootstrap-validator/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
+        <!-- Mobile redirect script by https://pagecrafter.com -->
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-6760733211798790",
+                enable_page_level_ads: true
+            });
+        </script>
+
+
+
+        <title> {% block title %}Dealbly | Find cheaper ways to have fun{% endblock %}</title>
+        <meta name="description" content="Dealbly is a local food and drink deal discovery service that provides search results for its users."/>
+
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top customNav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="topbar">
+                    <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button" >
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ url_for('mobile') }}"><span class="white">dealbly</span></a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse menuItems" id="navbar">
+                    {% if session.user_id %}
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="{{ url_for('mobilelogout') }}"><b>Log Out</b></a></li>
+                            <li><a href="{{ url_for('mobilerestaurants') }}"><b>Bars/Restaurants</b></a></li>
+                            <li><a href="{{ url_for('mobileabout') }}"><b>About</b></a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="{{ url_for('mobilelogin') }}"><b>Log In</b></a></li>
+                            <li><a href="{{ url_for('mobileregister') }}"><b>Register</b></a></li>
+                            <li><a href="{{ url_for('mobilerestaurants') }}"><b>Bars/Restaurants</b></a></li>
+                            <li><a href="{{ url_for('mobileabout') }}"><b>About</b></a></li>
+
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="hidden-lg- hidden-md hidden-sm tab-menu">
+            <ul>
+                <li><a href="#" class="active" data-id="right-content">Map</a></li>
+                <li><a href="#" data-id="left-content">List</a></li>
+            </ul>
+        </div>
+        <div class="content-area" >
+            <div id="right-content" class="right-content-area tab-item resizable">
+                <div id="handle" class="ui-resizable-handle ui-resizable-n"><b>&#9650;</b></div>
+                <div style="border-top: 1px solid black" class="googlemaps">
+                    <!-- https://developers.google.com/maps/documentation/javascript/tutorial -->
+                    <div id="map-canvas"></div>
+                </div>
+            </div>
+            <div id="left-content" class="left-content-area tab-item">
+                {% if get_flashed_messages() %}
+                    <header>
+                        <div class="alert alert-info" role="alert">
+                            {{ get_flashed_messages() | join(" ") }}
+                        </div>
+                    </header>
+                {% endif %}
+
+                <main>
+                    {% block main %}{% endblock %}
+                </main>
+            </div>
+        </div>
+
+    </body>
+
+</html>

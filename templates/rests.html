@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Cheap Eats, Cheap Drinks
+{% endblock %}
+
+{% block main %}
+            <script>
+                var markers = {{bars|tojson}}
+            </script>
+
+
+<h3> Participating Bars/Restaurants </h3>
+
+
+
+    <div class="table-responsive">
+        <table class= "table table-striped">
+            <tr>
+                <th colspan="6" style="width:30%;">Bars/Restaurants</th>
+
+            </tr>
+            <tr class="rowmachine">
+
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="1"></td>
+                </tr>
+            </tfoot>
+
+            {% for bar in bars %}
+                <tr style="font-size:17px; width:10%" id="{{ bar.bar_id }}">
+                    <td class="count">.</td>
+                    <td>
+                        <table>
+                            <tr><td style="font-size:17px;"><b><a href="{{ url_for('bar', thisbar=bar['bar_name'] ) }}"> {{ bar['bar_name'] }}</a></b></td></tr>
+                            <tr><td>{{ bar['address'] }}</td></tr>
+                            <tr><td>{{ bar['city'] }}, {{ bar['state'] }} {{ bar['zip'] }}</td></tr>
+                            <tr><td>{{ bar['phone'] }}</td></tr>
+                        </table>
+                    </td>
+                    <td> {{  bar['hood']}}
+                    <td> <span class="venueScore rating">{{ bar['rating'] }}</span></td>
+                </tr>
+            {% endfor %}
+
+
+            <tr class="__web-inspector-hide-shortcut__">
+                <td colspan="1"></td>
+            </tr>
+        </table>
+    </div>
+
+
+{% endblock %}

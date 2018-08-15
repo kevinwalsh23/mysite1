@@ -1,0 +1,45 @@
+{% extends "layout9.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <img alt="Sorry!" src="http://memegen.link/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?alt=http://i.imgur.com/A3ZR65I.png"/>
+
+            <main>
+                <h4 style="text-align: center;" >Register for Dealbly</h4>
+            <form style="text-align: center;" action="{{ url_for('mobileregister') }}" data-toggle="validator" method="post">
+                <fieldset>
+                    <div class="form-group">
+                        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required/>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="password" placeholder="Password" type="password" required/>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="confirm password" placeholder="Confirm Password" type="password" required/>
+                            
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="zipcode" placeholder="NYC Zipcode" type="text" required/>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="email" placeholder="Email Address" type="text" required/>
+                        
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Register</button>
+                    </div>
+                </fieldset>
+            </form>
+            </main>
+            
+        </div>
+        
+    </body>
+
+{% endblock %}

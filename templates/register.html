@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Cheap Eats, Cheap Drinks
+{% endblock %}
+
+{% block main %}
+        <script type="text/javascript">
+        <!--
+        if (screen.width <= 699) {
+            console.log(screen.width);
+            document.location = Flask.url_for('mobileregister', {});
+        }
+        //-->
+        </script>
+            <main>
+                <h4 style="margin-left: auto; margin-right: auto; width:25%;" >Register for Dealbly</h4>
+            <form style="margin-left: auto; margin-right: auto;width:25%;" action="{{ url_for('register') }}"
+                <fieldset>
+                    <div class="form-group">
+                        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="password" placeholder="Password" type="password" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="confirm password" placeholder="Confirm Password" type="password" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="zipcode" placeholder="NYC Zipcode" type="text" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="email" placeholder="Email Address" type="text" required/>
+
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Register</button>
+                    </div>
+                </fieldset>
+            </form>
+            </main>
+
+        </div>
+
+    </body>
+
+{% endblock %}
+
+
+

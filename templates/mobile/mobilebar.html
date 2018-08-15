@@ -1,0 +1,149 @@
+{% extends "layout9.html" %}
+
+{% block title %}
+Cheap Eats, Cheap Drinks
+{% endblock %}
+
+{% block main %}
+            <script>
+                var markers = {{barry|tojson}}
+            </script>
+
+
+<div style="background-color: whitesmoke; border: all; border-color: black; margin-left:3px;">
+{% for bar in barry %}
+    <table style="width: 98%">
+	<td>
+		<table>
+		<tr><h2 style="margin-top: 5px; font-family: helvetica neue; margin-left:3px; width:90%">{{ bar['bar_name']}}<br></h2>
+		</tr>
+		</table>
+	</td>
+	<td>
+		<table>
+		<tr><td style="text-align: right; margin-right: 0px; width: 10%;"><span class="venueScore1 rating">{{ bar['rating'] }}</span></td></tr>
+		</table>
+	</td>
+	</table>
+
+		{{ bar['address']}}<br>
+		{{ bar['city']}}, {{ bar['state']}} {{ bar['zip']}}<br>
+		Phone: {{ bar['phone']}}<br>
+		Website: www.{{ bar['website']}}<br>
+{% endfor %}
+</div>
+
+
+<h4 style="margin-top: 7px; background-color: #2e944b; color: #ffffff;">Current Deal<br></h4>
+<div style="margin-left:3px;"">
+
+{% for current in todaydeal %}
+
+		<b>{{current['time_start']}} to {{current['time_end']}}:</b> {{current['deal']}} <br>
+		<div></div>
+
+{% endfor %}
+</div>
+
+<h4 style="margin-top: 7px; background-color: #2e944b; color: #ffffff; ">Weekly Deals<br></h4>
+
+<div style="margin-left: 3px;">
+<div>
+<h5><b><u>Sunday</u></b></h5>
+
+{% for deal in sunday %}
+	<div>
+		<b>{{deal['time_start']}} to {{deal['time_end']}}:</b> {{deal['deal']}} <br>
+		<div></div>
+
+	</div>
+
+
+{% endfor %}
+</div>
+
+<div>
+<h5><b><u>Monday</u></b></h5>
+
+{% for deala in monday %}
+	<div>
+		<b>{{deala['time_start']}} to {{deala['time_end']}}:</b> {{deala['deal']}} <br>
+		<div></div>
+
+	</div>
+
+
+{% endfor %}
+</div>
+
+<div>
+<h5><b><u>Tuesday</u></b></h5>
+
+{% for dealb in tuesday %}
+	<div>
+		<b>{{dealb['time_start']}} to {{dealb['time_end']}}:</b> {{dealb['deal']}} <br>
+		<div></div>
+
+	</div>
+
+
+{% endfor %}
+</div>
+
+<div>
+<h5><b><u>Wednesday</u></b></h5>
+
+{% for dealc in wednesday %}
+	<div>
+		<b>{{dealc['time_start']}} to {{dealc['time_end']}}:</b> {{dealc['deal']}} <br>
+		<div></div>
+
+	</div>
+
+
+{% endfor %}
+</div>
+
+<div>
+<h5><b><u>Thursday</u></b></h5>
+
+{% for deald in thursday %}
+	<div>
+		<b>{{deald['time_start']}} to {{deald['time_end']}}:</b> {{deald['deal']}} <br>
+		<div></div>
+
+	</div>
+
+{% endfor %}
+</div>
+
+<div>
+<h5><b><u>Friday</u></b></h5>
+
+{% for deale in friday %}
+	<div>
+		<b>{{deale['time_start']}} to {{deale['time_end']}}:</b> {{deale['deal']}} <br>
+		<div></div>
+
+	</div>
+
+
+{% endfor %}
+</div>
+
+<div>
+<h5><b><u>Saturday</u></b></h5>
+
+{% for dealf in saturday %}
+	<div>
+		<b>{{dealf['time_start']}} to {{dealf['time_end']}}:</b> {{dealf['deal']}} <br>
+		<div></div>
+
+	</div>
+
+
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

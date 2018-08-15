@@ -1,0 +1,313 @@
+@import 'https://fonts.googleapis.com/css?family=Oswald';
+
+/*custom nav*/
+.customNav
+{
+    background:#2e944b;
+}
+
+.menuItems ul li a
+{
+    color:white;
+}
+
+/*end custom nav*/
+
+.container
+{
+    /* center contents */
+    height:92%;
+    width:63%;
+    margin-left: 0;
+    float:left;
+    float:bottom;
+    text-align: center;
+    display: inline;
+    margin-top:6%;
+    margin-right:0%;
+
+}
+.register
+{
+    /* center contents */
+    height:0%;
+    width:100%;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    background-color:#2e944b;
+}
+.headerstuff
+{
+    /* center contents */
+    height:0%;
+    width:100%;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+
+/* colors for navbar */
+.navbar-default .navbar-brand .blue
+{
+    color: #537fbe;
+    width: 100%;
+}
+.navbar-default .navbar-brand .red
+{
+    color: #ea433b;
+}
+.navbar-default .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+.navbar-default .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+.navbar-default .navbar-brand .white
+{
+    color: #ffffff;
+    font-family: 'Oswald';
+    font-size: 35px;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main td
+{
+    /* left-align tables' cells */
+    text-align: left;
+}
+
+#map-canvas
+{
+    /* height of these elements */
+    height: 100%;
+
+    width: 100%;
+    /* no margin around these elements */
+
+
+
+
+
+    /* disable scrollbars */
+    /*overflow: hidden;*/
+
+    /* no padding within these elements */
+    padding: 0;
+}
+
+
+.table-striped>thead>tr>th, .table-striped>tbody>tr>th, .table-striped>tfoot>tr>th, .table-striped>thead>tr>td, .table-striped>tbody>tr>td, .table-striped>tfoot>tr>td{
+    padding: 7px;
+    max-width: 100%;
+}
+
+.clearfix{
+    clear:both;
+}
+
+html, body{
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+table{counter-reset:section;}
+.count:before
+{
+counter-increment:section;
+content:counter(section);
+
+}
+
+.topbar
+{
+    /* center contents */
+    height:0%;
+    width:100%;
+    margin-left: 0;
+    margin-right: 0;
+
+}
+
+.tt-menu
+{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 300px;
+}
+.tt-suggestion.tt-cursor {
+    background-color: #0097cf;
+    color: #fff;
+    cursor: pointer;
+}
+.tt-suggestion {
+    margin: 0;
+    padding: 6px 12px;
+}
+.thosm {
+  font-family: Oswald, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background-color: #48a0dd;
+  padding-top: 9em;
+  padding-bottom: 10em;
+}
+
+
+
+/*ASHADUZZAMAN STYLE 03-03-18*/
+.topbar .navbar-brand {
+    float: left;
+    height: auto;
+    padding: 15px 15px 2px;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+}
+.navbar-fixed-top.navbar-default .menuItems .navbar-nav>li>a {
+    color: #ffffff;
+}
+.navbar-fixed-top.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+.navbar-fixed-top.navbar-default .navbar-toggle:focus,
+.navbar-fixed-top.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+.tab-menu {
+    margin: 60px 0 2px;
+    position: relative;
+    padding: 0 15px;
+    text-align: right;
+    display: none;
+}
+.tab-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: #999999;
+}
+.tab-menu ul li {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: -4px;
+    border-left: 1px solid #999999;
+}
+.tab-menu ul li a {
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    color: #333333;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.tab-menu ul li a:hover, .tab-menu ul li a:focus {
+    text-decoration: none;
+    outline: none;
+    background-color: #999999;
+    color: #ffffff;
+}
+.tab-menu ul li a.active {
+    background-color: #999999;
+    color: #ffffff;
+}
+.tab-item.show{
+    display: block;
+}
+.tab-item.hide{
+    display: none;
+}
+.content-area{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 0px;
+}
+
+.content-area .left-content-area{
+    width: 100%;
+    height: 40%;
+    position: relative;
+    padding-right: 0px;
+    padding-top: 2%;
+    padding-bottom: 40%;
+    margin-top: 50px;
+    margin-bottom: 40%;
+    z-index:0;
+}
+.content-area .right-content-area {
+    width: 100%;
+    height: 22%;
+    position: fixed;
+    padding-left: 0px;
+    right: 0px;
+    top: 78%;
+    bottom: 0;
+    z-index:1;
+}
+.content-area .lefty-content-area{
+    width: 35%;
+    position: relative;
+    padding-right: 15px;
+    padding-top: 20px;
+    margin-top: 50px;
+}
+.content-area .righty-content-area {
+    width: 65%;
+    position: fixed;
+    padding-left: 15px;
+    right: 10px;
+    top: 50px;
+    bottom: 0;
+}
+
+.googlemaps{
+    /* height of these elements */
+    width: 100%;
+    height: 100%;
+}
+.venueScore {
+    color: #fff;
+    cursor: default;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 0;
+    text-align: center;
+    width: 30px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #2e944b;
+
+
+}
